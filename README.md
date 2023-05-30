@@ -11,11 +11,11 @@ To Install dependencies
 
 ```bash
 cd server
-  npm i
+npm i
 ```
 
 To run
 
 ```bash
-  nodemon app.js
+nodemon app.js
 ```
