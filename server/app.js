@@ -1,28 +1,16 @@
-const mongoose = require('mongoose')
 const express = require('express')
 const app = express()
 const dotenv = require('dotenv')
 dotenv.config({path:'./config.env'});
 
+require('./db/conn')
 const port = process.env.PORT
 
-const db = process.env.DB
+// const User = require('./model/userSchema');
+app.use(express.json())
+app.use(require('./route/auth'));
 
-mongoose.connect(db).then(()=>{
-  console.log('connection Done')
-}).catch((err)=> console.log('connection failed'));
-const authMiddlware = (req, res, next) =>{
-next()
-}
-
-// authMiddlware();
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-  })
   
-  app.get('/about',authMiddlware, (req, res) => {
-    res.send('Hello World!')
-  })
   app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
   })
